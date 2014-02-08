@@ -1,0 +1,25 @@
+<p>
+  <strong>Week:</strong>
+  <%= @week.number %>
+</p>
+
+<h2>Days</h2>
+<% @week.days.each do |day| %>
+    <p>
+      <strong>Day:</strong>
+      <%= day.d_num %>
+      <%= link_to 'Show', [day.week, day] %>
+    </p>
+
+<% end %>
+
+<h2>Add day:</h2>
+<%= form_for([@week, @week.days.build]) do |f| %>
+    <p>
+      <%= f.label :d_num %><br />
+      <%= f.select :d_num, (1..7) %>
+    </p>
+    <p>
+      <%= f.submit %>
+    </p>
+<% end %>

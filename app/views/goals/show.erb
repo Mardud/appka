@@ -1,0 +1,28 @@
+<p>
+  <strong>Goal:</strong>
+  <%= @goal.name %><br />
+  <%= @goal.cycle %><br />
+  <%= @goal.cycles %><br />
+  <%= @goal.start %><br />
+</p>
+
+<h2>Weeks</h2>
+<% @goal.weeks.each do |week| %>
+    <p>
+      <strong>Week:</strong>
+      <%= week.number %>
+      <%= link_to 'Show', [week.goal, week] %>
+    </p>
+
+<% end %>
+
+<h2>Add week:</h2>
+<%= form_for([@goal, @goal.weeks.build]) do |f| %>
+    <p>
+      <%= f.label :number %><br />
+      <%= f.select :number, (1..@goal.cycle) %>
+    </p>
+    <p>
+      <%= f.submit %>
+    </p>
+<% end %>
