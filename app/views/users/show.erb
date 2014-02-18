@@ -14,39 +14,33 @@
       <%= goal.cycles %><br />
       <strong>Start:</strong>
       <%= goal.start %><br />
-      <%= link_to 'Show', [goal.user, goal] %>
-      <%= link_to 'Delete', [goal.user, goal], method: :delete %>
-      <%= link_to 'Edit', edit_user_goal_path(goal.user, goal) %>
+      <%= link_to 'Show', [goal] %>
+      <%= link_to 'Delete', [goal], method: :delete %>
+      <%= link_to 'Edit', edit_goal_path(goal)%>
     </p>
 
 <% end %>
-<%= link_to 'Back', users_path %>
 
-<h2>Add goal:</h2>
-<%= form_for([@user, @user.goals.build]) do |f| %>
+<h2>Add Goal:</h2>
+<%= form_for([@goal, @user.goals.build]) do |f| %>
     <p>
       <%= f.label :name %><br />
       <%= f.text_field :name %>
     </p>
-
-    <p>
-      <%= f.label :cycle %><br />
-      <%= f.select :cycle, (1..4) %>
-    </p>
-
-    <p>
-      <%= f.label :cycles %><br />
-      <%= f.text_field :cycles, type: "number", min: 1%>
-    </p>
-
     <p>
       <%= f.label "Start" %> <br />
       <%= f.check_box :start %> <br />
     </p>
-
-
-
+    <p>
+      <%= f.label "Cycle" %> <br />
+      <%= f.select :cycle, (1..4) %>
+    </p>
+    <p>
+      <%= f.label :cycles %><br />
+      <%= f.text_field :cycles %>
+    </p>
     <p>
       <%= f.submit %>
     </p>
 <% end %>
+<%= link_to 'Back', users_path %>

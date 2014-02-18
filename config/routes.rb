@@ -4,7 +4,10 @@ Appka::Application.routes.draw do
 
 
   resources :users do
-    resources :goals
+    collection do
+      get :current
+      get :test
+    end
   end
 
   resources :goals do

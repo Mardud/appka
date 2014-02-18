@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   respond_to :json
+  before_filter :authenticate_user!
   def new
     @user = User.new
   end
@@ -10,12 +11,15 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create(user_params)
-
+    respond_to do |format|
+      format.json { render json: @user }
+      format.html # show.html.erb
+    end
     head :ok
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = current_user
 
     respond_to do |format|
       format.json { render json: @user }
@@ -27,8 +31,17 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def current
+    @user = current_user
+
+    respond_to do |format|
+      format.json { render json: @user }
+      format.html # show.html.erb
+    end
+  end
+
   def update
-    @user = User.find(params[:id])
+    @user = current_user
 
     if @user.update(params[:user].permit(:email, :password))
       redirect_to @user
@@ -38,10 +51,12 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
+    @user = current_user
     @user.destroy
-
-    redirect_to users_path
+    respond_to do |format|
+      format.html { redirect_to users_path }
+      format.json { render json: true }
+    end
   end
 
 

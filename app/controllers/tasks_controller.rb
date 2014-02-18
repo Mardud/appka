@@ -2,12 +2,19 @@ class TasksController < ApplicationController
   respond_to :json
   def index
     @tasks = Day.find(params[:day_id]).tasks
+    respond_to do |format|
+      format.json { render json: @tasks }
+      format.html # show.html.erb
+    end
   end
 
   def create
     @day = Day.find(params[:day_id])
-    @task = @day.tasks.create(params[:task].permit(:t_name, :done))
-    redirect_to users_path
+    @task = @day.tasks.create(params[:task].permit(:t_name, :date ,:done))
+    respond_to do |format|
+      format.html { redirect_to users_path }
+      format.json { render json: true }
+    end
   end
 
   def show
@@ -26,7 +33,7 @@ class TasksController < ApplicationController
   def update
     @task = Day.find(params[:day_id]).tasks.find(params[:id])
 
-    if @task.update(params[:task].permit(:t_name, :done))
+    if @task.update(params[:task].permit(:t_name, :date ,:done))
       redirect_to users_path
     else
       render 'edit'
@@ -36,8 +43,10 @@ class TasksController < ApplicationController
   def destroy
     @task = Day.find(params[:day_id]).tasks.find(params[:id])
     @task.destroy
-
-    redirect_to users_path
+    respond_to do |format|
+      format.html { redirect_to users_path }
+      format.json { render json: true }
+    end
   end
 
 

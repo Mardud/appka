@@ -1,0 +1,414 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf8" />
+
+<title>Dzień</title>
+
+<style>
+.table{
+  margin-left: 1%;
+}
+
+td#dni{
+  float:left;
+  border:1px solid;
+  border-radius:25px;
+  padding: 18px 36px;
+  width:220px;
+  height: 540px;
+  margin-left: 12%;
+  margin-top: 3%;
+  background-color:#66cc00
+}
+
+</style>
+ 
+<script type="text/javascript" src="jQuery.js"></script>
+
+
+<script id='dane_dni' type='text/javascript'>
+   var idtask = 0
+   var ids = []
+   var week = 1;
+   var day1week1 = ''
+   var day2week1 = ''
+   var day3week1 = ''
+   var day4week1 = ''
+   var day5week1 = ''
+   var day6week1 = ''
+   var day7week1 = ''
+
+   var day1week2 = ''
+   var day2week2 = ''
+   var day3week2 = ''
+   var day4week2 = ''
+   var day5week2 = ''
+   var day6week2 = ''
+   var day7week2 = ''
+
+   var day1week3 = ''
+   var day2week3 = ''
+   var day3week3 = ''
+   var day4week3 = ''
+   var day5week3 = ''
+   var day6week3 = ''
+   var day7week3 = ''
+
+   var day1week4 = ''
+   var day2week4 = ''
+   var day3week4 = ''
+   var day4week4 = ''
+   var day5week4 = ''
+   var day6week4 = ''
+   var day7week4 = ''
+</script>
+
+
+<script id="Dodawanie celow/zadan">
+
+/* Klikanie make */
+$(document).ready(function(){
+     $(document).on('click', '#makeCel',function () {
+            var goal= ''
+            goal += "<p><input type='textbox' value = " + "'" + $('#makeG').val() +  "'" + ">" + "</p>"
+    	  $('#makeGoal').html("");
+          $("<h1 style='margin-left: 12%;'>Dzień</h1><p><input type='textbox' id='dodajZadanie' style='margin-left: 12%;'></p><select id='single' style='margin-left: 12%;'><option>Day-1</option><option>Day-2</option><option>Day-3</option><option>Day-4</option><option>Day-5</option><option>Day-6</option><option>Day-7</option></select><input type='button' value='Dodaj zadanie' id='dodZad' style='margin-left: 12%;'> <input type='button' value='usun' id='usunZad' style='margin-left: 12%;'>").appendTo('#makeGoal');
+/* Klikanie dodaj zad */
+
+     $("#dodZad").click(function () {
+            var msg= ''
+            var dzionek = '#'
+            dzionek += $( "#single" ).val()
+            msg += "<p id=" + idtask + 'p' + " >" +'<input type="checkbox" ' + 'id=' + idtask +' >'+ $('#dodajZadanie').val() + "</p>"
+            ids.push(idtask);
+            idtask += 1
+    	  $( msg ).appendTo(dzionek);
+     });
+
+/* RWORZENIE POLA Z CELEM I TYGODNIEM */
+  $('#Goals').html("");
+
+  $( goal ).appendTo('#Goals');
+  $( '<p id="tydzien">Week : ' + week + '</p>').appendTo('#Goals');
+  $( "<p><input type='button' value='Dodaj Goal' id='dodGoal'></p>").appendTo('#Goals');
+
+/* POWROT DO KALENDARZA */
+$(document).on('click', '#dodGoal',function() {
+    $('#Goals').html('');
+    $('#makeGoal').html('');
+    $('#makeGoal').append("<h1 style='margin-left: 34%;'> Goal </h1><p><input type='textbox' id='makeG' style='margin-left: 12%;' ></p><input type='button' value='Make' id='makeCel' style='margin-left: 34%;'>");
+    $('#Goals').append("<input type='button' value='Cel1' id='Cel1' style='width: 290px;'><input type='button' value='Usun' id='Usun1' style='width: 45px;'><input type='button' value='Cel1' id='Cel1' style='width: 290px;'><input type='button' value='Usun' id='Usun1' style='width: 45px;'>");
+    $('#Day-1').html('');
+    $('#Day-2').html('');
+    $('#Day-3').html('');
+    $('#Day-4').html('');
+    $('#Day-5').html('');
+    $('#Day-6').html('');
+    $('#Day-7').html('');
+});
+
+     });
+  });
+</script>
+
+<script>
+$(document).on('click','#usunZad',function(){
+  for ( var i = 0; i < ids.length ; i++){
+  var idname = '#' + i
+  var tof = $(idname).prop('checked');
+  if (tof){ $(idname).remove();
+            $(idname + 'p').remove();}
+  }
+});
+</script>
+
+<script>
+$(document).on('click','#Cel1',function(){
+  if(confirm("Are you sure you want to Start")){
+  $(this).css('background-color', 'green');}
+});
+</script>
+
+<script>
+$(document).on('click','#Usun1',function(){
+  /*var myDate=new Date();*/
+  if(confirm("Are you sure you want to delete goal ?")){
+  $(this).css('background-color', 'red');}
+});
+</script>
+
+<script id="dni">
+  $(document).ready(function(){
+    function displayVals() {
+      var singleValues = $( "#single" ).val() || [];
+      $( "#dzien" ).text(singleValues);
+  }
+ 
+  $( "select" ).change( displayVals );
+  displayVals();
+  });
+</script>
+
+<script>
+$(document).ready(function(){
+
+  $('#Next').click(function() {
+    if (week == 1)
+    {
+      day1week1 = $("#Day-1").html()
+      day2week1 = $("#Day-2").html()
+      day3week1 = $("#Day-3").html()
+      day4week1 = $("#Day-4").html()
+      day5week1 = $("#Day-5").html()
+      day6week1 = $("#Day-6").html()
+      day7week1 = $("#Day-7").html()
+      $('#Day-1').html('');
+      $('#Day-2').html('');
+      $('#Day-3').html('');
+      $('#Day-4').html('');
+      $('#Day-5').html('');
+      $('#Day-6').html('');
+      $('#Day-7').html('');
+      $('#Day-1').append(day1week2)
+      $('#Day-2').append(day2week2)
+      $('#Day-3').append(day3week2)
+      $('#Day-4').append(day4week2)
+      $('#Day-5').append(day5week2)
+      $('#Day-6').append(day6week2)
+      $('#Day-7').append(day7week2)
+    }
+    else if (week == 2){
+      day1week2 = $("#Day-1").html()
+      day2week2 = $("#Day-2").html()
+      day3week2 = $("#Day-3").html()
+      day4week2 = $("#Day-4").html()
+      day5week2 = $("#Day-5").html()
+      day6week2 = $("#Day-6").html()
+      day7week2 = $("#Day-7").html()
+      $('#Day-1').html('');
+      $('#Day-2').html('');
+      $('#Day-3').html('');
+      $('#Day-4').html('');
+      $('#Day-5').html('');
+      $('#Day-6').html('');
+      $('#Day-7').html('');
+      $('#Day-1').append(day1week3)
+      $('#Day-2').append(day2week3)
+      $('#Day-3').append(day3week3)
+      $('#Day-4').append(day4week3)
+      $('#Day-5').append(day5week3)
+      $('#Day-6').append(day6week3)
+      $('#Day-7').append(day7week3)
+    }
+    else if (week == 3){
+      day1week3 = $("#Day-1").html()
+      day2week3 = $("#Day-2").html()
+      day3week3 = $("#Day-3").html()
+      day4week3 = $("#Day-4").html()
+      day5week3 = $("#Day-5").html()
+      day6week3 = $("#Day-6").html()
+      day7week3 = $("#Day-7").html()
+      $('#Day-1').html('');
+      $('#Day-2').html('');
+      $('#Day-3').html('');
+      $('#Day-4').html('');
+      $('#Day-5').html('');
+      $('#Day-6').html('');
+      $('#Day-7').html('');
+      $('#Day-1').append(day1week4)
+      $('#Day-2').append(day2week4)
+      $('#Day-3').append(day3week4)
+      $('#Day-4').append(day4week4)
+      $('#Day-5').append(day5week4)
+      $('#Day-6').append(day6week4)
+      $('#Day-7').append(day7week4)
+    }
+    else if (week == 4){
+      day1week4 = $("#Day-1").html()
+      day2week4 = $("#Day-2").html()
+      day3week4 = $("#Day-3").html()
+      day4week4 = $("#Day-4").html()
+      day5week4 = $("#Day-5").html()
+      day6week4 = $("#Day-6").html()
+      day7week4 = $("#Day-7").html()
+      $('#Day-1').html('');
+      $('#Day-2').html('');
+      $('#Day-3').html('');
+      $('#Day-4').html('');
+      $('#Day-5').html('');
+      $('#Day-6').html('');
+      $('#Day-7').html('');
+      $('#Day-1').append(day1week1)
+      $('#Day-2').append(day2week1)
+      $('#Day-3').append(day3week1)
+      $('#Day-4').append(day4week1)
+      $('#Day-5').append(day5week1)
+      $('#Day-6').append(day6week1)
+      $('#Day-7').append(day7week1)
+    }
+    if (week < 4){
+    week += 1}
+    else{
+    week = 1}
+    $('#tydzien').text('');
+    $('#tydzien').append('Week : ' + week);
+});
+  $('#Previous').click(function() {
+    if (week <= 4 && week > 1){
+    week -= 1}
+    else{
+    week = 4}
+    $('#tydzien').text('');
+    $('#tydzien').append('Week : ' + week);
+    if (week == 4)
+    {
+      day1week1 = $("#Day-1").html()
+      day2week1 = $("#Day-2").html()
+      day3week1 = $("#Day-3").html()
+      day4week1 = $("#Day-4").html()
+      day5week1 = $("#Day-5").html()
+      day6week1 = $("#Day-6").html()
+      day7week1 = $("#Day-7").html()
+      $('#Day-1').html('');
+      $('#Day-2').html('');
+      $('#Day-3').html('');
+      $('#Day-4').html('');
+      $('#Day-5').html('');
+      $('#Day-6').html('');
+      $('#Day-7').html('');
+      $('#Day-1').append(day1week4)
+      $('#Day-2').append(day2week4)
+      $('#Day-3').append(day3week4)
+      $('#Day-4').append(day4week4)
+      $('#Day-5').append(day5week4)
+      $('#Day-6').append(day6week4)
+      $('#Day-7').append(day7week4)
+    }
+    else if (week == 3){
+      day1week4 = $("#Day-1").html()
+      day2week4 = $("#Day-2").html()
+      day3week4 = $("#Day-3").html()
+      day4week4 = $("#Day-4").html()
+      day5week4 = $("#Day-5").html()
+      day6week4 = $("#Day-6").html()
+      day7week4 = $("#Day-7").html()
+      $('#Day-1').html('');
+      $('#Day-2').html('');
+      $('#Day-3').html('');
+      $('#Day-4').html('');
+      $('#Day-5').html('');
+      $('#Day-6').html('');
+      $('#Day-7').html('');
+      $('#Day-1').append(day1week3)
+      $('#Day-2').append(day2week3)
+      $('#Day-3').append(day3week3)
+      $('#Day-4').append(day4week3)
+      $('#Day-5').append(day5week3)
+      $('#Day-6').append(day6week3)
+      $('#Day-7').append(day7week3)
+    }
+    else if (week == 2){
+      day1week3 = $("#Day-1").html()
+      day2week3 = $("#Day-2").html()
+      day3week3 = $("#Day-3").html()
+      day4week3 = $("#Day-4").html()
+      day5week3 = $("#Day-5").html()
+      day6week3 = $("#Day-6").html()
+      day7week3 = $("#Day-7").html()
+      $('#Day-1').html('');
+      $('#Day-2').html('');
+      $('#Day-3').html('');
+      $('#Day-4').html('');
+      $('#Day-5').html('');
+      $('#Day-6').html('');
+      $('#Day-7').html('');
+      $('#Day-1').append(day1week2)
+      $('#Day-2').append(day2week2)
+      $('#Day-3').append(day3week2)
+      $('#Day-4').append(day4week2)
+      $('#Day-5').append(day5week2)
+      $('#Day-6').append(day6week2)
+      $('#Day-7').append(day7week2)
+    }
+    else if (week == 1){
+      day1week2 = $("#Day-1").html()
+      day2week2 = $("#Day-2").html()
+      day3week2 = $("#Day-3").html()
+      day4week2 = $("#Day-4").html()
+      day5week2 = $("#Day-5").html()
+      day6week2 = $("#Day-6").html()
+      day7week2 = $("#Day-7").html()
+      $('#Day-1').html('');
+      $('#Day-2').html('');
+      $('#Day-3').html('');
+      $('#Day-4').html('');
+      $('#Day-5').html('');
+      $('#Day-6').html('');
+      $('#Day-7').html('');
+      $('#Day-1').append(day1week1)
+      $('#Day-2').append(day2week1)
+      $('#Day-3').append(day3week1)
+      $('#Day-4').append(day4week1)
+      $('#Day-5').append(day5week1)
+      $('#Day-6').append(day6week1)
+      $('#Day-7').append(day7week1)
+    }
+});
+});
+</script>
+
+
+
+
+ 
+</head>
+ 
+<body>
+<table>
+<tr>
+<td>
+<div id="makeGoal" style="overflow: scroll; width: 350px; height: 180px; border:1px solid; border-radius:5px; margin-left: 4%;">
+<h1 style="margin-left: 34%;"> Goal </h1>
+<p><input type='textbox' id='makeG' style="margin-left: 12%;" ></p>
+<input type='button' value='Make' id='makeCel' style="margin-left: 34%;">
+<p><select id='weeks' style='margin-left: 12%;'><option>1</option><option>2</option><option>3</option><option>4</option></select></p>
+<input type='textbox' id='cycles' style="margin-left: 12%;" ></p>
+</div>
+</td>
+
+<td>
+<div id="Goals" style="overflow: scroll; width: 350px; height: 180px; border:1px solid; border-radius:5px; margin-left: 160%;">
+<h1 style="margin-left: 34%;"> Goals </h1>
+<input type='button' value='Cel1' id='Cel1' style="width: 290px;"><input type='button' value='Usun' id='Usun1' style="width: 45px;">
+</div>
+</td>
+
+
+</tr>
+
+</table>
+
+<input type='button' value='Prev' id='Previous' style='margin-left: 1%'>
+<input type='button' value='Next' id='Next' style='margin-left: 91%'>
+
+<table class="table">
+<tr>
+<td>Day 1<div id="Day-1" style="overflow: scroll; width: 175px; height: 350px; border:1px solid; border-radius:5px;"></div></td>
+<td>Day 2<div id="Day-2" style="overflow: scroll; width: 175px; height: 350px; border:1px solid; border-radius:5px;"></div></td>
+<td>Day 3<div id="Day-3" style="overflow: scroll; width: 175px; height: 350px; border:1px solid; border-radius:5px;"></div></td>
+<td>Day 4<div id="Day-4" style="overflow: scroll; width: 175px; height: 350px; border:1px solid; border-radius:5px;"></div></td>
+<td>Day 5<div id="Day-5" style="overflow: scroll; width: 175px; height: 350px; border:1px solid; border-radius:5px;"></div></td>
+<td>Day 6<div id="Day-6" style="overflow: scroll; width: 175px; height: 350px; border:1px solid; border-radius:5px;"></div></td>
+<td>Day 7<div id="Day-7" style="overflow: scroll; width: 175px; height: 350px; border:1px solid; border-radius:5px;"></div></td>
+</tr>
+
+</table>
+
+<input type='button' value='Zaladuj' id='zalButton'>
+
+
+
+</body>
+</html>

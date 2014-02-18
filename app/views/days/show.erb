@@ -10,6 +10,7 @@
     <p>
       <strong>Task:</strong>
       <%= task.t_name %>
+      <%= task.date %>
       <%= task.done %>
     <td><%= link_to 'Edit', edit_day_task_path(task.day, task) %></td>
     <td><%= link_to 'Delete', [task.day, task], method: :delete %></td>
@@ -25,6 +26,11 @@
     <p>
       <%= f.label :t_name %><br />
       <%= f.text_field :t_name %>
+    </p>
+
+    <p>
+      <%= f.label :date %><br />
+      <%= f.text_field :date %>
     </p>
 
     <p>

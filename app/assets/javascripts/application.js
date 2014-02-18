@@ -12,5 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require wczytywadnie_zadan.js
+//= require daty.js
+//= require nasze_cele.js
+//= require gorne_okienka.js
+//= require nasze_cele.js
+//= require nezt_prev.js
+//= require dane_tygodni.js
+//= require wybieranie_dni.js
 //= require turbolinks
 //= require_tree .

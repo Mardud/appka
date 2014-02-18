@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20140208014835) do
 
   create_table "tasks", force: true do |t|
     t.string   "t_name"
+    t.string   "date"
     t.boolean  "done"
     t.integer  "day_id"
     t.datetime "created_at"

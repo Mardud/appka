@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf8" />
+
+<title>Dzień</title>
+
+<style>
+    .table{
+        margin-left: 1%;
+    }
+
+    td#dni{
+        float:left;
+        border:1px solid;
+        border-radius:25px;
+        padding: 18px 36px;
+        width:220px;
+        height: 540px;
+        margin-left: 12%;
+        margin-top: 3%;
+        background-color:#66cc00
+    }
+
+</style>
+
+<script>
+$(document).ready(function(){
+
+});
+</script>
+
+
+
+</head>
+
+<body>
+<table>
+  <tr>
+    <td>
+      <div id="makeGoal" style="overflow: scroll; width: 350px; height: 180px; border:1px solid; border-radius:5px; margin-left: 4%;">
+        <h1 style="margin-left: 34%;"> Goal </h1>
+        <p><input type='textbox' id='makeG' style="margin-left: 12%;" ></p>
+        <input type='button' value='Make' id='makeCel' style="margin-left: 34%;">
+        <p><select id='weeks' style='margin-left: 12%;'><option>1</option><option>2</option><option>3</option><option>4</option></select></p>
+        <input type='textbox' id='cycles' style="margin-left: 12%;" ></p>
+      </div>
+    </td>
+
+    <td>
+      <div id="Goals" style="overflow: scroll; width: 350px; height: 180px; border:1px solid; border-radius:5px; margin-left: 160%;">
+      </div>
+    </td>
+
+
+  </tr>
+
+</table>
+
+<input type='button' value='Prev' id='Previous' style='margin-left: 1%'>
+<input type='button' value='Next' id='Next' style='margin-left: 91%'>
+
+<table class="table">
+  <tr>
+    <td>Day 1<div id="Day-1" style="overflow: scroll; width: 175px; height: 350px; border:1px solid; border-radius:5px;"></div></td>
+    <td>Day 2<div id="Day-2" style="overflow: scroll; width: 175px; height: 350px; border:1px solid; border-radius:5px;"></div></td>
+    <td>Day 3<div id="Day-3" style="overflow: scroll; width: 175px; height: 350px; border:1px solid; border-radius:5px;"></div></td>
+    <td>Day 4<div id="Day-4" style="overflow: scroll; width: 175px; height: 350px; border:1px solid; border-radius:5px;"></div></td>
+    <td>Day 5<div id="Day-5" style="overflow: scroll; width: 175px; height: 350px; border:1px solid; border-radius:5px;"></div></td>
+    <td>Day 6<div id="Day-6" style="overflow: scroll; width: 175px; height: 350px; border:1px solid; border-radius:5px;"></div></td>
+    <td>Day 7<div id="Day-7" style="overflow: scroll; width: 175px; height: 350px; border:1px solid; border-radius:5px;"></div></td>
+  </tr>
+
+</table>
+
+<input type='button' value='Zaladuj' id='zalButton'>
+<input type='button' value='Zaladuj2' id='zalButton2'>
+<input type='button' value='Zaladuj3' id='zalButton3'>
+
+
+
+</body>
+</html>
